@@ -1,0 +1,12 @@
+#Python code to get SCR and xT as of tuple type
+
+def getSCRXRfromBus(fromBus,toBus,Vbase,Sbase):
+  import math
+  ierr,comp=psspy.brndt2(fromBus,toBus,'1','RX')
+  XR=abs(comp.imag/comp.real)
+  Zbase=Vbase**2/Sbase
+  R_net=Zbase*comp.real
+  X_net=R_net*XR
+  Z_net=math.sqrt(R_net**2+X_net**2)
+  SCR=Z_base/Z_net
+  return (SCR, XR)
