@@ -1,0 +1,14 @@
+How to set machine for PSSE IEC 60909 fault calculation 
+
+Go to machine short circuit setting 
+(pu base) 
+Positive R: 0.0
+Subtransient X: 1.0
+Transient X: 1.0
+Synchronous X: 1.0
+Negative R: 0
+Negative X: 0
+Zero R: 0
+Zero X: 99999
+
+Then can compate connnected disconnect result 
