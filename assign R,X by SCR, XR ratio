@@ -1,0 +1,16 @@
+## Code to assign Rpu and Xpu to the POC according to SCR and XR arrangement
+
+def changeSCRXR(fromBus, toBus,SCR,XR,base_from_PSCAD,baseKV):
+  import math
+  psseBase=100
+  pscadBase=base_from_PSCAD
+  Hz=50
+  Z_net=baseKV**2 / (pscadBase*SCR)
+  R_net=Z_net * math.cos(math.atan(XR))
+  Xl_net=Z_net * math.sin(math.atan(XR))
+  print(R_net,Xl_net)
+  Z_base = baseKV**2 / psseBase
+  Rpu=R_net/Z_base
+  Xpu=Xl_net/Z_base
+  ierr = psspy.branch_chng_3(fromBus,toBus,'1',REALAR1=Rpu, REALAR2=Xpu)
+  return ierr
