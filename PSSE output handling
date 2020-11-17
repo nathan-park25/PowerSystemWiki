@@ -1,0 +1,27 @@
+# By using psspy dyntools, PSSE output file can be saved ad dictionary type in Python
+# dictionary has contraint to handle and extract values from full dictionary.
+# to streamline process of plotting, data handling, this code can be applied 
+
+# requirement: pandas, psspy dyntool 
+
+# getting output
+
+chnfobj = dyntools.CHNF(r""".\fault.outx""")
+short_title, chanid, chandata = chnfobj.get_data()
+# getdata mnake tuple type data, only needed part is chandata part as it includes rawdata per channel 
+# However, this value is 
+
+# pandas has a function to convert to dictionary to DataFrame
+data=pd.DataFrame.from_dict(chandata)
+
+# Dat
+ vpoi = data[30]
+ ppoi = data[53]
+ qpoi = data[54]
+ 
+ ## here that idex is as same as output channel number shown in output file. 
+ 
+ # Even, dataframe makes easier handling data # for exameple, 
+ f = (data[19]+1)*50
+ # data[19] has freuquency but this value is deviation based on 0 as of pu. DataFrame support direct vector, array calculation. which can be converted real frequency number 
+ 
