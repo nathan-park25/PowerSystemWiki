@@ -1,0 +1,11 @@
+def getDroopvalue(freq,Sbase,droop_rate,deadband,pre_disturbance,Smax,Smin):
+    result=[]
+    for i in freq:
+      if i>50: deadband = -1*deadband
+      calc=100*(1/droop_rate)*(50-i-deadband)/50*Sbase
+      if i <= 50+deadband and i>=50-deadband: calc=0
+      calc=pre_disturbance+calc
+      if calc >=Smax: calc=Smax
+      if calc <= Smin: calc=Smin
+      result.append(calc)
+    return result
