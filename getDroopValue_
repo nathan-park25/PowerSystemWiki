@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 
 def getDroopvalue(freq,Sbase,droop_rate,deadband):
     result=[]
-    db=[]
-    for index,i in enumerate(freq):
+    db=0
+    for i in freq:
       if i>50.0: 
         db= -1*deadband
       else: db=deadband
@@ -16,3 +16,8 @@ def getDroopvalue(freq,Sbase,droop_rate,deadband):
       if calc <= Sbase*-1: calc=Sbase*-1
       result.append(calc)
     return result
+
+freq=np.arange(48.5,52,0.01)
+drooped=getDroopvalue(freq,100.0,1.7,0.15)
+d1=pd.DataFrame(drooped, columns=['1.7'], index=freq)
+d1.plot(linestyle='-')
