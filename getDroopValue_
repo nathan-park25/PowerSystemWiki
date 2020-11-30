@@ -1,11 +1,18 @@
-def getDroopvalue(freq,Sbase,droop_rate,deadband,pre_disturbance,Smax,Smin):
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+def getDroopvalue(freq,Sbase,droop_rate,deadband):
     result=[]
-    for i in freq:
-      if i>50: deadband = -1*deadband
-      calc=100*(1/droop_rate)*(50-i-deadband)/50*Sbase
+    db=[]
+    for index,i in enumerate(freq):
+      if i>50.0: 
+        db= -1*deadband
+      else: db=deadband
+        
+      calc=100*(1/droop_rate)*(50-i-db)/50*Sbase
       if i <= 50+deadband and i>=50-deadband: calc=0
-      calc=pre_disturbance+calc
-      if calc >=Smax: calc=Smax
-      if calc <= Smin: calc=Smin
+      if calc >=Sbase: calc=Sbase
+      if calc <= Sbase*-1: calc=Sbase*-1
       result.append(calc)
     return result
