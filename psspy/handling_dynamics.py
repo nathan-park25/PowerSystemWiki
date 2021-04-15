@@ -29,3 +29,18 @@ ierr=psspy.change_wnmod_icon(gens[0][0],gens[0][1],aux_name,icon_num,value) ## i
 ierr=psspy.change_wnmod_icon(gens[0][0],gens[0][1],aux_name,icon_num,value) ## icon_num to change relative to the start of the block (1 for CON(J), 2 for CON(J+1))
 ## CHANGE VAR
 ierr=psspy.change_wnmod_var(gens[0][0],gens[0][1],aux_name,icon_num,'STR_CHANGE') ## icon_num to change relative to the start of the block (1 for VAR(J), 2 for VAR(J+1))
+
+
+### GETTING MACHINE DATA ###
+ierr,rval=psspy.macdat(gens[0][0],gens[0][1],string) 
+"""
+Q : Machine loading in Mvar
+P: Machine loading in MW
+"""
+### CHANGING MACHINE DATA ###
+ierr = psspy.machine_data_2(gens[0][0], gens[0][1], intgar, realar)
+
+### GET LINE/BRANCH FLOW ###
+ierr, rval = brnmsc(ibus,jbus,ickt,string)
+Q -= psspy.brnmsc(genOUT[1],genOUT[0],genOUT[2],'Q')[1]
+
